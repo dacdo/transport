@@ -1,2 +1,0 @@
-tr A-Z a-z < input_file > output_file
-
