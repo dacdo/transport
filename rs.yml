@@ -1,0 +1,19 @@
+apiVersion: apps/v1beta2
+kind: ReplicaSet
+metadata:
+  name: cars-rs
+spec:
+  replicas: 3
+  selector:
+  matchLabels:
+    app: api-cars
+  template:
+    metadata:
+    labels:
+      app: api-cars# Pod labels
+    spec:
+      containers:
+      - name: api-cars
+        image: dacdo/cars:latest
+        ports:
+        - containerPort: 8080
