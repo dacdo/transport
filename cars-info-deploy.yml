@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cars-info-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cars-info
+  minReadySeconds: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: cars-info
+    spec:
+      containers:
+        - name: cars-info-pod
+          image: dacdo/cars-info:latest
+          ports:
+            - containerPort: 8082
