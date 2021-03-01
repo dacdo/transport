@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cars-dealer-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cars-dealer
+  minReadySeconds: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: cars-dealer
+    spec:
+      containers:
+        - name: cars-dealer-pod
+          image: dacdo/cars-dealer:latest
+          ports:
+            - containerPort: 8083
