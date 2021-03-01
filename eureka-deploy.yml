@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cars-deploy
+  name: eureka-deploy
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
-      app: api-cars
-  minReadySeconds: 3
+      app: eureka
+  minReadySeconds: 2
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -16,10 +16,10 @@ spec:
   template:
     metadata:
       labels:
-        app: api-cars
+        app: eureka
     spec:
       containers:
-        - name: cars-pod
-          image: dacdo/cars:latest
+        - name: eureka-pod
+          image: dacdo/eureka:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 8761
