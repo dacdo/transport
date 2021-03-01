@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: carsales-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: carsales
+  minReadySeconds: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: carsales
+    spec:
+      containers:
+        - name: carsales-pod
+          image: dacdo/carsales:latest
+          ports:
+            - containerPort: 8088
