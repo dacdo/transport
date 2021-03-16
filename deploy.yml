@@ -20,6 +20,6 @@ spec:
     spec:
       containers:
         - name: cars-pod
-          image: dacdo/cars:latest
+          image: dacdo/cars_api:latest
           ports:
             - containerPort: 8080
